@@ -30,7 +30,7 @@ void print_chessboard(SPACE chessboard[15][15]) {
 				printf(" ¡ð ");
 			}
 			else {
-				printf(" + ");
+				printf(" . ");
 			}
 		}
 		printf("\n");
