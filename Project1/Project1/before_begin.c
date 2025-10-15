@@ -20,7 +20,7 @@ int before_begin() {
 	}
 	else {
 		printf("You are White! You go second!\n");
-		Sleep(2000);
+		Sleep(5000);
 		return WHITE;
 	}
 }
