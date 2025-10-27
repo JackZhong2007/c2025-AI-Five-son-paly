@@ -6,34 +6,16 @@
 #include"human_player_play.h"
 #include"victory_condition.h"
 int main() {
-	//TEST_8:测试胜利判定
-	///*
+	//TEST_9:对set_individual_chessboard产生疑惑，于是测试
+	
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
 	SPACE chessboard[LENGTH][LENGTH];
 	set_individual_chessboard(chessboard);
+	printf("%d\n", chessboard[0][0].score);
+	printf("%d\n", chessboard[4][8].y);
+	printf("%d\n", chessboard[5][7].belong);
+	system("pause");
 	print_chessboard(chessboard);
-	int x, y;
-	if(color==WHITE){
-		AI_player_play(chessboard, BLACK);
-		print_chessboard(chessboard);
-	}
-	int AI_color = (color == WHITE) ? BLACK : WHITE;
-	while (1) {
-		scanf_s("%d%d", &x, &y);
-		human_player_play(x, y, chessboard, color);
-		print_chessboard(chessboard);
-		if(color==victory_condition(chessboard)){
-			printf("You Win!\n");
-			break;
-		}
-		AI_player_play(chessboard, AI_color);
-		print_chessboard(chessboard);
-		if (AI_color == victory_condition(chessboard)) {
-			printf("AI Win!\n");
-			break;
-		}
-	}
-	//*/
 	return 0;
 }
