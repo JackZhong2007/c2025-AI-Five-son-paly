@@ -26,6 +26,99 @@ int check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) {
 	}
 	return num;
 }
+int check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) {
+	const int X = stone_place.x, Y = stone_place.y;
+	int num = 1;
+	for (int i = 1; i <= 4; i++) {
+		if (X - i < 0) {
+			break;
+		}
+		if (chessboard[X-i][Y].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = 1; i <= 4; i++) {
+		if (X + i > LENGTH - 1) {
+			break;
+		}
+		if (chessboard[X+i][Y].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	return num;
+}
+int check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) {
+	const int X = stone_place.x, Y = stone_place.y;
+	int num = 1;
+	for (int i = 1; i <= 4; i++) {
+		if (Y - i < 0) {
+			break;
+		}
+		if (X + i > LENGTH - 1) {
+			break;
+		}
+		if (chessboard[X - i][Y+i].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = 1; i <= 4; i++) {
+		if (Y - i < 0) {
+			break;
+		}
+		if (X + i > LENGTH - 1) {
+			break;
+		}
+		if (chessboard[X + i][Y-i].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	return num;
+}
+int check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) {
+	const int X = stone_place.x, Y = stone_place.y;
+	int num = 1;
+	for (int i = 1; i <= 4; i++) {
+		if (Y - i < 0) {
+			break;
+		}
+		if (X - i < 0) {
+			break;
+		}
+		if (chessboard[X - i][Y - i].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = 1; i <= 4; i++) {
+		if (X + i > LENGTH - 1) {
+			break;
+		}
+		if (Y + i > LENGTH - 1) {
+			break;
+		}
+		if (chessboard[X + i][Y + i].belong == stone_place.belong) {
+			num++;
+		}
+		else {
+			break;
+		}
+	}
+	return num;
+}
 void evaluate_score(SPACE stone_place,SPACE chessboard[LENGTH][LENGTH]) {
 	//感觉可以以落子处为基准的一块区域内检验活三是否生成，活四是否生成，冲四是否生成
 	//d博士那咨询了，记得看看

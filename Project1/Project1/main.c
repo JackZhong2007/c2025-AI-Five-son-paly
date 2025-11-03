@@ -7,7 +7,7 @@
 #include"victory_condition.h"
 #include"evaluate_score.h"
 int main() {
-	//TEST_10:检验evaluate_score附属函数check_continue_heng
+	//TEST_11:检验evaluate_score四个附属函数
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -24,7 +24,10 @@ int main() {
 		scanf_s("%d%d", &x, &y);
 		human_player_play(x, y, chessboard, color);
 		printf("%d\n", check_continue_heng(chessboard[x][y], chessboard));
-		//Sleep("2000");
+		printf("%d\n", check_continue_shu(chessboard[x][y], chessboard));
+		printf("%d\n", check_continue_pie(chessboard[x][y], chessboard));
+		printf("%d\n", check_continue_na(chessboard[x][y], chessboard));
+		system("pause");
 		print_chessboard(chessboard);
 		
 		if (color == victory_condition(chessboard)) {
