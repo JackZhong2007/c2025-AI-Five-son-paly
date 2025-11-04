@@ -7,9 +7,7 @@
 #include"victory_condition.h"
 #include"evaluate_score.h"
 int main() {
-	//TEST_12:讲四个价值评估附属函数从Int类型改为同时返回数和是否是活的(返回三个值，
-	// 一个表示连续数，两个表示左右两端是否被赌，
-	//补充了棋的类型，新增“冲”，“死”两个类型
+	//TEST_13:完成evaluate_score,书写过程中发现“冲”类型需要另外来写，涉及到假设落子该点，那么得分变化会如何，之后再另外讨论
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -25,10 +23,7 @@ int main() {
 	while (1) {
 		scanf_s("%d%d", &x, &y);
 		human_player_play(x, y, chessboard, color);
-		printf("%d\t%d\t%d\n", check_continue_heng(chessboard[x][y], chessboard).num, check_continue_heng(chessboard[x][y], chessboard).live_1, check_continue_heng(chessboard[x][y], chessboard).live_2);
-		printf("%d\t%d\t%d\n", check_continue_shu(chessboard[x][y], chessboard).num, check_continue_shu(chessboard[x][y], chessboard).live_1, check_continue_shu(chessboard[x][y], chessboard).live_2);
-		printf("%d\t%d\t%d\n", check_continue_pie(chessboard[x][y], chessboard).num, check_continue_pie(chessboard[x][y], chessboard).live_1, check_continue_pie(chessboard[x][y], chessboard).live_2);
-		printf("%d\t%d\t%d\n", check_continue_na(chessboard[x][y], chessboard).num, check_continue_na(chessboard[x][y], chessboard).live_1, check_continue_na(chessboard[x][y], chessboard).live_2);
+		printf("%d\n", evaluate_score(chessboard[x][y], chessboard));
 		system("pause");
 		print_chessboard(chessboard);
 		

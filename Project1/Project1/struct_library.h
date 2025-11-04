@@ -19,15 +19,19 @@ typedef enum{BLACK,WHITE,BLANK}STATUS;
 
 #define DEAD_1 0
 #define LIVE_1 1
+
 #define DEAD_2 0
 #define SLEEP_2 1
 #define LIVE_2 10
+
 #define DEAD_3 0
 #define SLEEP_3 10
 #define CHONG_3 20
 #define LIVE_3 100
+
 #define DEAD_4 0
 #define CHONG_4 300
 #define SLEEP_4 500
 #define LIVE_4 1000
+
 #define LIVE_5 10000
