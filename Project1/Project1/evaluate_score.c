@@ -4,6 +4,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 	NUM_LIVE num_live = {1,true,true};
 	for (int i = 1; i <= 4; i++) {
 		if (Y - i < 0) {
+			num_live.live_1 = false;
 			break;
 		}
 		if (chessboard[X][Y - i].belong == stone_place.belong) {
@@ -19,6 +20,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 	}
 	for (int i = 1; i <= 4; i++) {
 		if (Y + i > LENGTH - 1) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (chessboard[X][Y + i].belong == stone_place.belong) {
@@ -39,6 +41,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 	NUM_LIVE num_live = { 1,true,true };
 	for (int i = 1; i <= 4; i++) {
 		if (X - i < 0) {
+			num_live.live_1 = false;
 			break;
 		}
 		if (chessboard[X-i][Y].belong == stone_place.belong) {
@@ -54,6 +57,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 	}
 	for (int i = 1; i <= 4; i++) {
 		if (X + i > LENGTH - 1) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (chessboard[X+i][Y].belong == stone_place.belong) {
@@ -73,10 +77,12 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 	const int X = stone_place.x, Y = stone_place.y;
 	NUM_LIVE num_live = { 1,true,true };
 	for (int i = 1; i <= 4; i++) {
-		if (Y + i < 0) {
+		if (X- i < 0) {
+			num_live.live_1 = false;
 			break;
 		}
-		if (X - i > LENGTH - 1) {
+		if (Y+i > LENGTH - 1) {
+			num_live.live_1 = false;
 			break;
 		}
 		if (chessboard[X - i][Y+i].belong == stone_place.belong) {
@@ -92,9 +98,11 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 	}
 	for (int i = 1; i <= 4; i++) {
 		if (Y - i < 0) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (X + i > LENGTH - 1) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (chessboard[X + i][Y-i].belong == stone_place.belong) {
@@ -115,9 +123,11 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 	NUM_LIVE num_live = { 1,true,true };
 	for (int i = 1; i <= 4; i++) {
 		if (Y - i < 0) {
+			num_live.live_1 = false;
 			break;
 		}
 		if (X - i < 0) {
+			num_live.live_1 = false;
 			break;
 		}
 		if (chessboard[X - i][Y - i].belong == stone_place.belong) {
@@ -133,9 +143,11 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 	}
 	for (int i = 1; i <= 4; i++) {
 		if (X + i > LENGTH - 1) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (Y + i > LENGTH - 1) {
+			num_live.live_2 = false;
 			break;
 		}
 		if (chessboard[X + i][Y + i].belong == stone_place.belong) {
@@ -143,6 +155,9 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 		}
 		else if (chessboard[X + i][Y + i].belong != BLANK) {
 			num_live.live_2 = false;
+			break;
+		}
+		else {
 			break;
 		}
 	}
@@ -342,6 +357,5 @@ int evaluate_score(SPACE stone_place,SPACE chessboard[LENGTH][LENGTH]) {
 		evaluation += LIVE_5;
 		break;
 	}
-	stone_place.score = evaluation;
 	return evaluation;
 }
