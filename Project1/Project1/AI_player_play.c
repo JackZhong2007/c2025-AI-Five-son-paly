@@ -85,5 +85,8 @@ int situation_assessment(SPACE chessboard[LENGTH][LENGTH],int color) {
 			}
 		}
 	}
+	if (color == BLACK) {
+		situation_score += 100;
+	}
 	return situation_score;
 }

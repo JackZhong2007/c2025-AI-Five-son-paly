@@ -8,7 +8,7 @@
 #include"evaluate_score.h"
 #include"AI_player_play.h"
 int main() {
-	//TEST_16:完成局面评估系统，评估当前局面谁为优势方,优势或者均势时进攻，劣势时防守
+	//TEST_17:完成“冲”类型,为了鼓励AI进攻，当其执黑时，局面评估分额外加100,并调试了各类棋型的分值
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -30,6 +30,8 @@ int main() {
 			printf("You Win!\n");
 			break;
 		}
+		printf("%d\n", situation_assessment(chessboard, AI_color));
+		system("pause");
 		if (situation_assessment(chessboard, AI_color) >= 0) {
 			AI_player_offense(chessboard, AI_color);
 		}

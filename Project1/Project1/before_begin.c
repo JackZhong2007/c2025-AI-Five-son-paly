@@ -1,6 +1,7 @@
 #include"before_begin.h"
 #include"head_title_library.h"
 #include"struct_library.h"
+#include"console_individual.h"
 int before_begin() {
 	console_individual();
 	printf("Welcome to Gobang Game!\n");

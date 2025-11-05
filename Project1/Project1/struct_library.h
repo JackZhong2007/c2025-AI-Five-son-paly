@@ -11,6 +11,8 @@ typedef struct {
 	int num;
 	bool live_1;
 	bool live_2;
+	bool chong_1[3];
+	bool chong_2[3];
 }NUM_LIVE;
 
 typedef enum{BLACK,WHITE,BLANK}STATUS;
@@ -25,13 +27,14 @@ typedef enum{BLACK,WHITE,BLANK}STATUS;
 #define LIVE_2 10
 
 #define DEAD_3 0
-#define SLEEP_3 10
-#define CHONG_3 20
-#define LIVE_3 100
+#define SLEEP_3 200
+#define CHONG_3 5
+#define LIVE_3 300
 
 #define DEAD_4 0
-#define CHONG_4 300
-#define SLEEP_4 500
+#define CHONG_4 250
+#define SLEEP_4 600
 #define LIVE_4 1000
 
 #define LIVE_5 10000
+#define CHONG_5 500
