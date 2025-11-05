@@ -7,7 +7,7 @@
 #include"victory_condition.h"
 #include"evaluate_score.h"
 int main() {
-	//TEST_14:初次尝试AI落子————遍历场上所有可落子位置，评估每一处落子的己方分数，选取最高处落子，并成功修改了wvaluate_score.c中的一些逻辑bug和缺漏
+	//TEST_15:将test14中完成的ai落子策略命名为进攻策略，并完成防守落子策略
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -29,7 +29,7 @@ int main() {
 			printf("You Win!\n");
 			break;
 		}
-		AI_player_play(chessboard, AI_color);
+		AI_player_defense(chessboard, AI_color);
 		print_chessboard(chessboard);
 		if (AI_color == victory_condition(chessboard)) {
 			printf("AI Win!\n");
