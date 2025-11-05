@@ -6,8 +6,9 @@
 #include"human_player_play.h"
 #include"victory_condition.h"
 #include"evaluate_score.h"
+#include"AI_player_play.h"
 int main() {
-	//TEST_15:将test14中完成的ai落子策略命名为进攻策略，并完成防守落子策略
+	//TEST_16:完成局面评估系统，评估当前局面谁为优势方,优势或者均势时进攻，劣势时防守
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -29,7 +30,12 @@ int main() {
 			printf("You Win!\n");
 			break;
 		}
-		AI_player_defense(chessboard, AI_color);
+		if (situation_assessment(chessboard, AI_color) >= 0) {
+			AI_player_offense(chessboard, AI_color);
+		}
+		else {
+			AI_player_defense(chessboard, AI_color);
+		}
 		print_chessboard(chessboard);
 		if (AI_color == victory_condition(chessboard)) {
 			printf("AI Win!\n");

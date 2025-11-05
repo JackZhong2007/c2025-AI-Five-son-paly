@@ -31,6 +31,7 @@ void AI_player_offense(SPACE space[LENGTH][LENGTH], int color) {
 		}
 	}
 	space[X][Y].belong = color; 
+	/*
 	printf("%d\n", EVALUATION);
 	printf("%d\n", check_continue_heng(space[X][Y], space).num);
 	printf("%d\n", check_continue_shu(space[X][Y], space).num);
@@ -39,6 +40,7 @@ void AI_player_offense(SPACE space[LENGTH][LENGTH], int color) {
 	printf("%d\n", check_continue_na(space[X][Y], space).live_1);
 	printf("%d\n", check_continue_na(space[X][Y], space).live_2);
 	system("pause");
+	*/
 }
 void AI_player_defense(SPACE space[LENGTH][LENGTH], int color){
 	int X = -1, Y = -1, EVALUATION = -99;
@@ -57,6 +59,7 @@ void AI_player_defense(SPACE space[LENGTH][LENGTH], int color){
 		}
 	}
 	space[X][Y].belong = color;
+	/*
 	printf("%d\n", EVALUATION);
 	printf("%d\n", check_continue_heng(space[X][Y], space).num);
 	printf("%d\n", check_continue_shu(space[X][Y], space).num);
@@ -65,4 +68,22 @@ void AI_player_defense(SPACE space[LENGTH][LENGTH], int color){
 	printf("%d\n", check_continue_na(space[X][Y], space).live_1);
 	printf("%d\n", check_continue_na(space[X][Y], space).live_2);
 	system("pause");
+	*/
+}
+int situation_assessment(SPACE chessboard[LENGTH][LENGTH],int color) {
+	int situation_score = 0;
+	for (int i = 0; i < LENGTH; i++) {
+		for (int j = 0; j < LENGTH; j++) {
+			if (chessboard[i][j].belong == color) {
+				situation_score += evaluate_score(chessboard[i][j], chessboard);
+			}
+			else if (chessboard[i][j].belong == BLANK) {
+				continue;
+			}
+			else {
+				situation_score -= evaluate_score(chessboard[i][j], chessboard);
+			}
+		}
+	}
+	return situation_score;
 }
