@@ -455,8 +455,8 @@ int evaluate_score(SPACE stone_place,SPACE chessboard[LENGTH][LENGTH]) {
 	}
 	int chong[8] = { 0 };
 	for (int i = 0; i <= 2; i++) {
-		if (HSPN[0].chong_1[i])	chong[0]++;
-		if (HSPN[0].chong_2[i])	chong[1]++;
+		if (HSPN[0].chong_1[i])		chong[0]++;
+		if (HSPN[0].chong_2[i])		chong[1]++;
 		if (HSPN[1].chong_1[i])		chong[2]++;
 		if (HSPN[1].chong_2[i])		chong[3]++;
 		if (HSPN[2].chong_1[i])		chong[4]++;

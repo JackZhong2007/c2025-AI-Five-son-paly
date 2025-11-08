@@ -10,5 +10,5 @@ void human_player_play(int x,int y,SPACE space[LENGTH][LENGTH],int color) {
 		printf("This position is already occupied. Please choose another position:\n");
 		scanf_s("%d%d", &new_x, &new_y);
 		human_player_play(new_x, new_y, space,color);
-	}
+	} 
 }

@@ -8,7 +8,9 @@
 #include"evaluate_score.h"
 #include"AI_player_play.h"
 int main() {
-	//TEST_17:完成“冲”类型,为了鼓励AI进攻，当其执黑时，局面评估分额外加100,并调试了各类棋型的分值
+	//TEST_18:当AI执黑时，将落子位置从7，7改为在以7，7为中心的3*3空间内随机落子
+	//同时，为了增加AI落子的随机性，将选取当前局面最优的三个落子位置，按照轮盘赌随机落子,但是此方案最终取消，以避免必应落子由于随机数而未应答
+	//贪心算法策略完成
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -17,7 +19,8 @@ int main() {
 	print_chessboard(chessboard);
 	int x, y;
 	if (color == WHITE) {
-		chessboard[7][7].belong = BLACK;
+		int x_rand = rand() % 3 + 6, y_rand = rand() % 3 + 6;
+		chessboard[x_rand][y_rand].belong = BLACK;
 		print_chessboard(chessboard);
 	}
 	int AI_color = (color == WHITE) ? BLACK : WHITE;
