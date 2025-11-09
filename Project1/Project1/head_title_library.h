@@ -6,3 +6,4 @@
 #include<conio.h>
 #include<Windows.h>
 #include<stdbool.h>
+#include<limits.h>

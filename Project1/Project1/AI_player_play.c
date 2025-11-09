@@ -1,3 +1,4 @@
+/*
 #include"AI_player_play.h"
 #include"head_title_library.h"
 #include"struct_library.h"
@@ -14,10 +15,6 @@ void AI_player_play(SPACE space[LENGTH][LENGTH], int color) {
 	}
 }
 */
-#include"AI_player_play.h"
-#include"head_title_library.h"
-#include"struct_library.h"
-#include"evaluate_score.h"
 /*
 void AI_player_play(SPACE space[LENGTH][LENGTH], int color) {
 	int x = rand() % LENGTH;
@@ -30,6 +27,7 @@ void AI_player_play(SPACE space[LENGTH][LENGTH], int color) {
 	}
 }
 */
+/*
 void AI_player_offense(SPACE space[LENGTH][LENGTH], int color) {
 	int X = -1, Y = -1, EVALUATION = -99;
 	for (int i = 0; i < LENGTH; i++) {
@@ -86,7 +84,17 @@ int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color) {
 	}
 	return situation_score;
 }
+//
+int MIN(SPACE place, SPACE chessboard[LENGTH][LENGTH]) {
 
+}
+int MAX(SPACE place, SPACE chessboard[LENGTH][LENGTH]) {
+
+}
+void afa_beita(SPACE chessboard[LENGTH][LENGTH]) {
+
+}
+*/
 
 
 
@@ -212,3 +220,4 @@ void AI_player_offense(SPACE space[LENGTH][LENGTH], int color) {
 	roulette_wheel_selection(&EVA[0], &EVA[1], &EVA[2], space, color);
 }
 */
+
