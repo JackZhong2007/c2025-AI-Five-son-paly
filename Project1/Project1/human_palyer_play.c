@@ -2,7 +2,14 @@
 #include"head_title_library.h"
 #include"struct_library.h"
 void human_player_play(int x,int y,SPACE space[LENGTH][LENGTH],int color) {
-	if (BLANK == space[x][y].belong) {
+	if (x > LENGTH - 1 || x<0 || y>LENGTH || y < 0) {
+		printf("please follow the rule,your stone place is not in the chessboard.\n");
+		int a, b;
+		scanf_s("%d%d", &a,&b);
+		human_player_play(a, b, space, color);
+		return;
+	}
+	if (space[x][y].belong==BLANK) {
 		space[x][y].belong = color;
 	}
 	else {
