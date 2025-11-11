@@ -9,13 +9,10 @@
 #include"AI_player_play.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_20:重新简化调整alpha_beta函数，各棋形分值回归原来值，evaluate.c回归原先
-	//增加了一个输入保护机制：避免输入落子位置时故意或者有意输入了棋盘外的点位导致栈溢出
-	//将搜索深度设置为4后，并且修改了一些棋类的分值，可以避免很多情况下AI下棋的弱智行为，但并未完全杜绝其发生。
-	//发现在将搜索深度设置为4后，直接删去危机棋形应急应对策略，发现反而不会出现弱智行为了
-	//尝试将原先AI执黑时在中心九格随机落子删去，同质化使用AIalpha-beta函数，但发现AI会稳定的落子在（6，6），于是取消此想法，并将范围扩大到中心25格
-	//新增AI落子后告知玩家落子位置，并提示玩家走棋
-	//用Release模式代替Debug模式运行速度会提升多倍，甚至一个数量级
+	//TEST_21:“冲字模型有点问题——冲也应该有死活之分，对于威胁程度不同
+	//改进方案为利用live_1,live_2,但发现有问题，遂想增添结构体内含变量
+	//对evaluate函数进行了较多改动，以减少“重复的味道”，但是这个.c文件的重复味道应该还是很浓郁的
+	//新增游戏结束时弹出提框的功能
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
@@ -37,12 +34,14 @@ int main() {
 		print_chessboard(chessboard);
 		if (color == victory_condition(chessboard)) {
 			printf("You Win!\n");
+			MessageBox(0, TEXT("You win! Congratulations!"), TEXT("GameOver"), NULL);
 			break;
 		}
 		SPACE AI=AI_player_optimized(chessboard, AI_color);
 		print_chessboard(chessboard);
 		if (AI_color == victory_condition(chessboard)) {
 			printf("AI Win!\n");
+			MessageBox(0, TEXT("You lost! What a pity!"), TEXT("GameOver"), NULL);
 			break;
 		}
 		printf("AI choose stone place(%d,%d).\n", AI.x, AI.y);
