@@ -1,6 +1,4 @@
 #include"human_player_play.h"
-#include"head_title_library.h"
-#include"struct_library.h"
 void human_player_play(int x,int y,SPACE space[LENGTH][LENGTH],int color) {
 	if (x > LENGTH - 1 || x<0 || y>LENGTH || y < 0) {
 		printf("please follow the rule,your stone place is not in the chessboard.\n");

@@ -1,6 +1,6 @@
 #pragma once
 #include"head_title_library.h"
-#include"struct_library.h"
+#include"evaluate_score.h"
 int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color);
 int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color);
 int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color);

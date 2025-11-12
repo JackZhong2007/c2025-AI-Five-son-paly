@@ -1,9 +1,5 @@
 #include"print_chessboard.h"
-#include"head_title_library.h"
-#include"struct_library.h"
-#include"console_individual.h"
 void print_chessboard(SPACE chessboard[15][15]) {
-	console_individual();
 	system("cls");
 	printf("   ");
 	for (int i = 0; i < LENGTH; i++) {

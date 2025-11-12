@@ -1,6 +1,4 @@
 #include"victory_condition.h"
-#include"head_title_library.h"
-#include"struct_library.h"
 int victory_condition(SPACE space[LENGTH][LENGTH]) {
 	for (int i = 0; i < LENGTH; i++) {
 		for (int j = 0; j < LENGTH; j++) {

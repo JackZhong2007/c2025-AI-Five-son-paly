@@ -482,15 +482,15 @@ int evaluate_score(SPACE stone_place,SPACE chessboard[LENGTH][LENGTH]) {int eval
 		break;
 	}
 	int chong[8] = { 0 };
-	for (int i = 0; i <= 2; i++) {
-		if (HSPN[0].chong_1[i])		chong[0]++;
-		if (HSPN[0].chong_2[i])		chong[1]++;
-		if (HSPN[1].chong_1[i])		chong[2]++;
-		if (HSPN[1].chong_2[i])		chong[3]++;
-		if (HSPN[2].chong_1[i])		chong[4]++;
-		if (HSPN[2].chong_2[i])		chong[5]++;
-		if (HSPN[3].chong_1[i])		chong[6]++;
-		if (HSPN[3].chong_2[i])		chong[7]++;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j <= 2; j++) {
+			if (HSPN[i].chong_1[j]) {
+				chong[2*i]++;
+			}
+			if (HSPN[i].chong_2[j]) {
+				chong[2*i+1]++;
+			}
+		}
 	}
 	for (int i = 0; i < 8; i++) {
 		if (chong[i] > 0) {
