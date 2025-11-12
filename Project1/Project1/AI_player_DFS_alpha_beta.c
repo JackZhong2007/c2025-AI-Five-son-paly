@@ -16,16 +16,12 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
         return situation_assessment(chessboard, color);
     }
     if (maximizingPlayer) {
-        int maxEval = INT_MIN;
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
                 if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
                     chessboard[i][j].belong = color;
                     int eval = minimax(chessboard, depth - 1, alpha, beta, 0, color);
                     chessboard[i][j].belong = BLANK;
-                    if (eval > maxEval) {
-                        maxEval = eval;
-                    }
                     if (eval > alpha) {
                         alpha = eval;
                     }
@@ -36,10 +32,9 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
             }
         }
         next1:;
-        return maxEval;
+        return alpha;
     }
     else {
-        int minEval = INT_MAX;
         int opponent_color = (color == BLACK ? WHITE : BLACK);
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
@@ -47,9 +42,6 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
                     chessboard[i][j].belong = opponent_color;
                     int eval = minimax(chessboard, depth - 1, alpha, beta, 1, color);
                     chessboard[i][j].belong = BLANK;
-                    if (eval < minEval) {
-                        minEval = eval;
-                    }
                     if (eval < beta) {
                         beta = eval;
                     }
@@ -60,7 +52,7 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
             }
         }
         next2:;
-        return minEval;
+        return beta;
     }
 }
 SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color) {

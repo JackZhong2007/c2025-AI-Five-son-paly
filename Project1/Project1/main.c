@@ -9,10 +9,7 @@
 #include"AI_player_play.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_21:“冲字模型有点问题——冲也应该有死活之分，对于威胁程度不同
-	//改进方案为利用live_1,live_2,但发现有问题，遂想增添结构体内含变量
-	//对evaluate函数进行了较多改动，以减少“重复的味道”，但是这个.c文件的重复味道应该还是很浓郁的
-	//新增游戏结束时弹出提框的功能
+	//TEST_22:优化了一下ALPHA_BETA函数
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
