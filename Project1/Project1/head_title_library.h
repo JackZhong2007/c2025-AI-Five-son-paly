@@ -12,7 +12,6 @@ typedef struct {
 	int x;
 	int y;
 	int belong;
-	int score;
 }SPACE;
 
 typedef struct {

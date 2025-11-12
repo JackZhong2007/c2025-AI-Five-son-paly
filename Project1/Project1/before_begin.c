@@ -43,7 +43,6 @@ void set_individual_chessboard(SPACE chessboard[LENGTH][LENGTH]) {
 			chessboard[i][j].x = i;
 			chessboard[i][j].y = j;
 			chessboard[i][j].belong = BLANK;
-			chessboard[i][j].score = 0;
 		}
 	}
 }

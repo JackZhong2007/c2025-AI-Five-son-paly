@@ -6,7 +6,7 @@
 #include"evaluate_score.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_24:优化了UI，新增落子规范示例，新增按'b'确定启动游戏，而不是短暂的暂停然后自动启动游戏
+	//TEST_25:优化了SPACE结构，其中的score已经无用
 ///*
 	srand((unsigned int)time(NULL));
 	int color = before_begin();
