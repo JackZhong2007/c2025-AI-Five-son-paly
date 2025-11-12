@@ -14,7 +14,15 @@ int before_begin() {
 	printf("2. Players take turns placing their pieces (Black and White) on the intersections of the grid.\n");
 	printf("3. The first player to align five of their pieces horizontally, vertically, or diagonally wins the game.\n");
 	printf("4. If the board is filled without any player aligning five pieces, the game ends in a draw.\n");
-	printf("5. To place a piece, enter the coordinates in the format: x y (e.g., 7 7 for the center of the board).\n");
+	printf("5. To place a piece, enter the coordinates in the format: x y (e.g., 6 7 for the center of the board).\n");
+	printf("	In this case,'6'means the sixth line,'7'means the seventh column.\n");
+	printf("	You can put your piece onto (x,y),and x y is between 0 and 14.\n");
+	printf("If you have already read the rule,please push 'b' to begin!\n");
+	char b = _getch();
+	while (b != 'b') {
+		b = _getch();
+	}
+	system("cls");
 	printf("Enjoy the game!\n");
 	printf("Now,you will get your chess color randomly!\n");
 	int random = rand() % 2;
