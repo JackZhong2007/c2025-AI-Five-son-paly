@@ -55,3 +55,5 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用
 <img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/30051f42-419f-4b2c-bd5c-4ea9f2eaba14" />
 落子犯规: 
 <img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/af35de43-df2e-4f3b-890f-c6827bcb58b0" />
+让两个AI对弈的结果：  
+<img width="2398" height="951" alt="image" src="https://github.com/user-attachments/assets/741fe5b4-3c88-4b86-83c7-c921efdb604a" />
