@@ -42,3 +42,16 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用
 搜索的深度通过宏定义#define SEARCH_DEPTH 4 设置为4，这在保证了程序运行速度的用时又确保了AI算力的足够强大  
 以下为AI_player_DFS_alpha_beta函数原码  
 <img width="1346" height="1178" alt="image" src="https://github.com/user-attachments/assets/308073f1-d3ef-4c49-bfaa-b2c69b0c7647" />
+# 测试&运行结果截图  
+玩法介绍界面：
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/72234bab-9435-461a-bc27-dd9afd7227e6" />
+按'b'确认后：  
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/373a4bdd-2378-4889-b744-18b8a9a836cb" />
+执黑落子后：  
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/5a7dd04c-5283-41d4-a029-db3841e80c5e" />
+人类玩家胜利：
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/1d47c004-c95c-4b65-a1d5-ac96dfe710df" />
+人类玩家失败： 
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/30051f42-419f-4b2c-bd5c-4ea9f2eaba14" />
+落子犯规: 
+<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/af35de43-df2e-4f3b-890f-c6827bcb58b0" />
