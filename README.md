@@ -99,3 +99,4 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
         return beta;  
     }  
 }  
+<img width="1346" height="1178" alt="image" src="https://github.com/user-attachments/assets/308073f1-d3ef-4c49-bfaa-b2c69b0c7647" />
