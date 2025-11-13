@@ -5,7 +5,7 @@
 # 项目内容
 项目目标：在控制台实现人机对战五子棋游戏  
 核心功能：一个具备较为强大的攻防能力的AI  
-技术亮点：使用alpha-beta剪枝加速极小化极大算法算法，DFS  
+技术亮点：使用alpha-beta剪枝加速极小化极大算法，DFS  
 成果：AI具有较强算力，程序运行稳定  
 # 项目概述
 操作系统：WIN11  
@@ -34,8 +34,21 @@ typedef struct {
 我将棋形分为了“活”，“死”，“眠”，“冲”这四个部分，其中“冲”比较特殊，又细分为了“活冲”，“死冲”，“眠冲”，而Num就是简单的一到五这五个情况。  
 不同棋形有着不同的分值，而NUM_LIVE的成员作用为：num代表主体连续数，bool live[2]的两个量分别代指两端是否为“活”（是否被对方堵住或者被棋盘大小限制），bool chong_1[3]和bool   chong_2[3]分别判断在主体两端由于空白空间而中止计数时，两端是否由于“冲”棋形而产生只有中间断了一个的“连续”棋形，其中[3]是为计数，bool chong_live[2]是为判断越过空白后的子是否为“活”  
 2.功能模块设计  
-main.c:游戏开始前置准备，主循环——一方落子->判定是否获胜->另一方落子->判断是否或者  
-head_title_library.h:包含一系列头文件，宏定义，类定义，方便调用  
-before_begin：包含三个函数：  void console_individual(); ->隐藏光标  
+（1）main.c:游戏开始前置准备，主循环——一方落子->判定是否获胜->另一方落子->判断是否或者  
+（2）head_title_library.h:包含一系列头文件，宏定义，类定义，方便调用  
+（3）before_begin.c：包含三个函数：  void console_individual(); ->隐藏光标  
                              int before_begin(); ->UI界面，随机设置执黑和执白方  
-                             void set_individual_chessboard(SPACE chessboard[LENGTH][LENGTH]); ->棋盘初始化
+                             void set_individual_chessboard(SPACE chessboard[LENGTH][LENGTH]); ->棋盘初始化  
+（4）print_chessboard.c:包含一个函数： void print_chessboard(SPACE chessboard[15][15]); ->打印棋盘的当前落子情况  
+（5）human_player_play.c:包含一个函数： void human_player_play(int ,int ,SPACE space[LENGTH][LENGTH],int ); ->人类玩家输入落子位置并落子  
+（6）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
+（7）evaluate_score.c:包含五个函数： NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->计数当前落子位置“横”方向棋形要素  
+NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->计数当前落子位置“竖”方向棋形要素  
+NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->计数当前落子位置“撇”方向棋形要素  
+NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->计数当前落子位置“捺”方向棋形要素  
+int evaluate_score(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->统计当前位置在当前棋局下的总得分  
+（8）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
+int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
+int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
+SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
+
