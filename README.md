@@ -51,4 +51,51 @@ int evaluate_score(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]); ->统�
 int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
 int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
 SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
-
+# 核心算法实现&代码展示
+该项目最为核心的算法是alpha-beta剪枝和minimax&DFS算法  
+搜索的深度通过宏定义#define SEARCH_DEPTH 4 设置为4，这在保证了程序运行速度的用时又确保了AI算力的足够强大  
+以下为AI_player_DFS_alpha_beta函数原码  
+int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color) {
+    if (depth == 0) {
+        return situation_assessment(chessboard, color);
+    }
+    if (maximizingPlayer) {
+        for (int i = 0; i < LENGTH; i++) {
+            for (int j = 0; j < LENGTH; j++) {
+                if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
+                    chessboard[i][j].belong = color;
+                    int eval = minimax(chessboard, depth - 1, alpha, beta, 0, color);
+                    chessboard[i][j].belong = BLANK;
+                    if (eval > alpha) {
+                        alpha = eval;
+                    }
+                    if (beta <= alpha) {
+                        goto next1; // β剪枝
+                    }
+                }
+            }
+        }
+        next1:;
+        return alpha;
+    }
+    else {
+        int opponent_color = (color == BLACK ? WHITE : BLACK);
+        for (int i = 0; i < LENGTH; i++) {
+            for (int j = 0; j < LENGTH; j++) {
+                if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
+                    chessboard[i][j].belong = opponent_color;
+                    int eval = minimax(chessboard, depth - 1, alpha, beta, 1, color);
+                    chessboard[i][j].belong = BLANK;
+                    if (eval < beta) {
+                        beta = eval;
+                    }
+                    if (beta <= alpha) {
+                        goto next2; // α剪枝
+                    }
+                }
+            }
+        }
+        next2:;
+        return beta;
+    }
+}
