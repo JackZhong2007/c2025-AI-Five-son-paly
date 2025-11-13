@@ -28,7 +28,7 @@ typedef struct {
     bool live[2];  
     bool chong_1[3];  
     bool chong_2[3];  
-    bool chong_live[2];
+    bool chong_live[2];  
 }NUM_LIVE;  
 棋形由连续子数码Num和是否“活”两部分组成，该结构以此命名。  
 我将棋形分为了“活”，“死”，“眠”，“冲”这四个部分，其中“冲”比较特殊，又细分为了“活冲”，“死冲”，“眠冲”，而Num就是简单的一到五这五个情况。  
