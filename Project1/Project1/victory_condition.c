@@ -2,7 +2,7 @@
 int victory_condition(SPACE space[LENGTH][LENGTH]) {
 	for (int i = 0; i < LENGTH; i++) {
 		for (int j = 0; j < LENGTH; j++) {
-			if (space[i][j].belong == BLANK) {
+			if (space[i][j].belong == Blank) {
 				continue;
 			}
 			int color = space[i][j].belong;
@@ -57,5 +57,5 @@ int victory_condition(SPACE space[LENGTH][LENGTH]) {
 			
 		}
 	}
-	return BLANK;
+	return Blank;
 }

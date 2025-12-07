@@ -10,7 +10,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 		if (chessboard[X][Y - i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if(chessboard[X][Y - i].belong != BLANK){
+		else if(chessboard[X][Y - i].belong != Blank){
 			num_live.live[0] = false;
 			break;
 		}
@@ -21,7 +21,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 					if (chessboard[X][Y - i - j].belong == stone_place.belong) {
 						num_live.chong_1[j-1] = true;
 					}
-					else if (chessboard[X][Y - i - j].belong != BLANK) {
+					else if (chessboard[X][Y - i - j].belong != Blank) {
 						num_live.chong_live[0] = false;
 						break;
 					}
@@ -41,7 +41,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 		if (chessboard[X][Y + i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X][Y + i].belong != BLANK) {
+		else if (chessboard[X][Y + i].belong != Blank) {
 			num_live.live[1] = false;
 			break;
 		}
@@ -52,7 +52,7 @@ NUM_LIVE check_continue_heng(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]
 					if (chessboard[X][Y + i + j].belong == stone_place.belong) {
 						num_live.chong_2[j - 1] = true;
 					}
-					else if (chessboard[X][Y + i + j].belong != BLANK) {
+					else if (chessboard[X][Y + i + j].belong != Blank) {
 						num_live.chong_live[1] = false;
 						break;
 					}
@@ -77,7 +77,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 		if (chessboard[X-i][Y].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X - i][Y].belong != BLANK) {
+		else if (chessboard[X - i][Y].belong != Blank) {
 			num_live.live[0] = false;
 			break;
 		}
@@ -90,7 +90,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 					if (chessboard[X - i - j][Y].belong == stone_place.belong) {
 						num_live.chong_1[j - 1] = true;
 					}
-					else if (chessboard[X - i - j][Y].belong != BLANK) {
+					else if (chessboard[X - i - j][Y].belong != Blank) {
 						num_live.chong_live[0] = false;
 						break;
 					}
@@ -110,7 +110,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 		if (chessboard[X+i][Y].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X + i][Y].belong != BLANK) {
+		else if (chessboard[X + i][Y].belong != Blank) {
 			num_live.live[1] = false;
 			break;
 		}
@@ -123,7 +123,7 @@ NUM_LIVE check_continue_shu(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 					if (chessboard[X + i + j][Y].belong == stone_place.belong) {
 						num_live.chong_2[j - 1] = true;
 					}
-					else if (chessboard[X + i + j][Y].belong != BLANK) {
+					else if (chessboard[X + i + j][Y].belong != Blank) {
 						num_live.chong_live[1] = false;
 						break;
 					}
@@ -152,7 +152,7 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 		if (chessboard[X - i][Y+i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X - i][Y + i].belong != BLANK) {
+		else if (chessboard[X - i][Y + i].belong != Blank) {
 			num_live.live[0] = false;
 			break;
 		}
@@ -164,7 +164,7 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 					if (chessboard[X - i - j][Y + i + j].belong == stone_place.belong) {
 						num_live.chong_1[j - 1] = true;
 					}
-					else if (chessboard[X - i - j][Y + i + j].belong != BLANK) {
+					else if (chessboard[X - i - j][Y + i + j].belong != Blank) {
 						num_live.chong_live[0] = false;
 						break;
 					}
@@ -188,7 +188,7 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 		if (chessboard[X + i][Y-i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X + i][Y - i].belong != BLANK) {
+		else if (chessboard[X + i][Y - i].belong != Blank) {
 			num_live.live[1] = false;
 			break;
 		}
@@ -200,7 +200,7 @@ NUM_LIVE check_continue_pie(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH])
 					if (chessboard[X + i + j][Y - i - j].belong == stone_place.belong) {
 						num_live.chong_1[j - 1] = true;
 					}
-					else if (chessboard[X + i + j][Y - i - j].belong != BLANK) {
+					else if (chessboard[X + i + j][Y - i - j].belong != Blank) {
 						num_live.chong_live[1] = false;
 					}
 					else {
@@ -228,7 +228,7 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 		if (chessboard[X - i][Y - i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X - i][Y - i].belong != BLANK) {
+		else if (chessboard[X - i][Y - i].belong != Blank) {
 			num_live.live[0] = false;
 			break;
 		}
@@ -240,7 +240,7 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 					if (chessboard[X - i - j][Y - i - j].belong == stone_place.belong) {
 						num_live.chong_1[j - 1] = true;
 					}
-					else if (chessboard[X - i - j][Y - i - j].belong != BLANK) {
+					else if (chessboard[X - i - j][Y - i - j].belong != Blank) {
 						num_live.chong_live[0] = false;
 						break;
 					}
@@ -264,7 +264,7 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 		if (chessboard[X + i][Y + i].belong == stone_place.belong) {
 			num_live.num++;
 		}
-		else if (chessboard[X + i][Y + i].belong != BLANK) {
+		else if (chessboard[X + i][Y + i].belong != Blank) {
 			num_live.live[1] = false;
 			break;
 		}
@@ -276,7 +276,7 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 					if (chessboard[X + i + j][Y + i + j].belong == stone_place.belong) {
 						num_live.chong_1[j - 1] = true;
 					}
-					else if (chessboard[X + i + j][Y + i + j].belong != BLANK) {
+					else if (chessboard[X + i + j][Y + i + j].belong != Blank) {
 						num_live.chong_live[1] = false;
 						break;
 					}
@@ -291,7 +291,7 @@ NUM_LIVE check_continue_na(SPACE stone_place, SPACE chessboard[LENGTH][LENGTH]) 
 	return num_live;
 }
 int evaluate_score(SPACE stone_place,SPACE chessboard[LENGTH][LENGTH]) {int evaluation = 0;
-	const int sign = stone_place.belong == BLACK ? 1 : -1;
+	const int sign = stone_place.belong == Black ? 1 : -1;
 	const int X = stone_place.x, Y = stone_place.y;
 	NUM_LIVE HSPN[4] = {check_continue_heng(stone_place, chessboard),
 						check_continue_shu(stone_place, chessboard) , 

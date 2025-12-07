@@ -4,9 +4,10 @@
 #include<string.h>
 #include<time.h>
 #include<conio.h>
-#include<Windows.h>
+//#include<Windows.h>
 #include<stdbool.h>
 #include<limits.h>
+#include<raylib.h>
 
 typedef struct {
 	int x;
@@ -22,7 +23,17 @@ typedef struct {
 	bool chong_live[2];
 }NUM_LIVE;
 
-typedef enum { BLACK, WHITE, BLANK }STATUS;
+#define Black 0
+#define White 1
+#define Blank 2
+
+
+#define RULE_UI 0
+#define BLACK_UI 1
+#define WHITE_UI 2
+#define GAMETIME 3
+#define WIN_UI 4
+#define LOSE_UI 5
 
 #define LENGTH 15
 

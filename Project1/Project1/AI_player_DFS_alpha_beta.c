@@ -3,7 +3,7 @@ int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance) {
     for (int i = x - distance; i <= x + distance; i++) {
         for (int j = y - distance; j <= y + distance; j++) {
             if (i >= 0 && i < LENGTH && j >= 0 && j < LENGTH && !(i == x && j == y)) {
-                if (chessboard[i][j].belong != BLANK) {
+                if (chessboard[i][j].belong != Blank) {
                     return 1;
                 }
             }
@@ -18,10 +18,10 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
     if (maximizingPlayer) {
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
-                if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
+                if (chessboard[i][j].belong == Blank && has_neighbor(chessboard, i, j, 2)) {
                     chessboard[i][j].belong = color;
                     int eval = minimax(chessboard, depth - 1, alpha, beta, 0, color);
-                    chessboard[i][j].belong = BLANK;
+                    chessboard[i][j].belong = Blank;
                     if (eval > alpha) {
                         alpha = eval;
                     }
@@ -35,13 +35,13 @@ int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, in
         return alpha;
     }
     else {
-        int opponent_color = (color == BLACK ? WHITE : BLACK);
+        int opponent_color = (color == Black ? White : Black);
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
-                if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
+                if (chessboard[i][j].belong == Blank && has_neighbor(chessboard, i, j, 2)) {
                     chessboard[i][j].belong = opponent_color;
                     int eval = minimax(chessboard, depth - 1, alpha, beta, 1, color);
-                    chessboard[i][j].belong = BLANK;
+                    chessboard[i][j].belong = Blank;
                     if (eval < beta) {
                         beta = eval;
                     }
@@ -60,10 +60,10 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color) {
     int bestX = -1, bestY = -1;
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
-            if (chessboard[i][j].belong == BLANK && has_neighbor(chessboard, i, j, 2)) {
+            if (chessboard[i][j].belong == Blank && has_neighbor(chessboard, i, j, 2)) {
                 chessboard[i][j].belong = color;
                 int score = minimax(chessboard, SEARCH_DEPTH - 1, INT_MIN, INT_MAX, 0, color);
-                chessboard[i][j].belong = BLANK;
+                chessboard[i][j].belong = Blank;
                 if (score > bestScore) {
                     bestScore = score;
                     bestX = i;
@@ -77,7 +77,7 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color) {
     if (bestX == -1 || bestY == -1) {
         for (int i = LENGTH / 2 - 1; i <= LENGTH / 2 + 1; i++) {
             for (int j = LENGTH / 2 - 1; j <= LENGTH / 2 + 1; j++) {
-                if (chessboard[i][j].belong == BLANK) {
+                if (chessboard[i][j].belong == Blank) {
                     chessboard[i][j].belong = color;
                     return chessboard[i][j];
                 }
@@ -85,7 +85,7 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color) {
         }
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
-                if (chessboard[i][j].belong == BLANK) {
+                if (chessboard[i][j].belong == Blank) {
                     chessboard[i][j].belong = color;
                     return chessboard[i][j];
                 }
@@ -104,7 +104,7 @@ int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color) {
             if (chessboard[i][j].belong == color) {
                 situation_score += evaluate_score(chessboard[i][j], chessboard);
             }
-            else if (chessboard[i][j].belong == BLANK) {
+            else if (chessboard[i][j].belong == Blank) {
                 continue;
             }
             else {
@@ -112,7 +112,7 @@ int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color) {
             }
         }
     }
-    if (color == BLACK) {
+    if (color == Black) {
         situation_score += 100;
     }
     return situation_score;
