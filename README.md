@@ -40,6 +40,7 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用
 <img width="1346" height="1178" alt="image" src="https://github.com/user-attachments/assets/308073f1-d3ef-4c49-bfaa-b2c69b0c7647" />  
 minimax算法是在每一层轮流选取对于下棋方而言的最优解，经过DFS全局遍历搜索深度后，得出在搜索深度内的最优解（默认与对方极限博弈），而alpha_beta剪枝则是在minimax的基础上增加了一个剪枝的效果，使得在一些注定无效的情况时停止DFS，转向搜索其他，从而加速搜索。剪枝的逻辑是：假设当前层为AI层，在这一层AI落子会尽可能使得落子后全局评估分数较低（有利于AI），而在下一层（human层），聪明的人类玩家会让人类落子后全局评估分数尽可能高（有利于人类）。在human层遍历时，每经过一次搜索，最终会采取的情况的全局评估分数是单调不减的，而对于AI层，每经过一次搜索，最终会采取的情况的全局评估分数是单调不增的，因此，当human层的搜索分数开始大于AI层预设的搜索分数时，就可以采取剪枝，停止该结点的搜索，因为继续搜索下去，分数只会增加，而无论是否再增加，上一AI层都不会采取这一结点情况，因此可以避免无效的搜索，提高了搜索效率。  
 # 测试&运行结果截图  
+游戏过程中按esc可退出游戏。
 玩法介绍界面：
 <img width="1416" height="1527" alt="image" src="https://github.com/user-attachments/assets/3c2fecb8-511c-4b1b-9a99-89270d60590f" />  
 该界面产生的同时开始播放bgm  
@@ -49,4 +50,10 @@ minimax算法是在每一层轮流选取对于下棋方而言的最优解，经�
 执白时：  
 <img width="1413" height="1527" alt="image" src="https://github.com/user-attachments/assets/9b532ac2-7d76-4416-af06-19b9cf7d439f" />   
 按鼠标右键进入下一环节。  
+<img width="1409" height="1527" alt="image" src="https://github.com/user-attachments/assets/d1ee570b-add6-4876-8689-7d18fc983b67" />  
+鼠标移到想要落子的位置后，按鼠标左键进行预落子，按鼠标右键进行落子，落子成功后会有音效提示，AI思考落子期间bgm会停止。  
+败北结算画面：  
+<img width="1409" height="1529" alt="image" src="https://github.com/user-attachments/assets/c4a93ba9-7dc3-4ec3-8a8f-582f5f896c9b" />
+胜利结算画面：  
+<img width="1414" height="1532" alt="image" src="https://github.com/user-attachments/assets/862b1904-540d-43b1-aca8-fadd236ff0c1" />  
 
