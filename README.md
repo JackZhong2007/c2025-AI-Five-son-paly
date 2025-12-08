@@ -26,14 +26,10 @@ IDE:VS2026
 2.功能模块设计  
 （1）main.c:游戏开始前置准备，主循环——一方落子->判定是否获胜->另一方落子->判断是否或者  
 （2）head_title_library.h:包含一系列头文件，宏定义，类定义，方便调用  
-（3）before_begin.c：包含三个函数：  
-<img width="1172" height="134" alt="image" src="https://github.com/user-attachments/assets/aa463e3e-4cd1-44f7-92c5-8aa2e176e02d" />
-（4）print_chessboard.c:包含一个函数： void print_chessboard(SPACE chessboard[15][15]); ->打印棋盘的当前落子情况  
-（5）human_player_play.c:包含一个函数： void human_player_play(int ,int ,SPACE space[LENGTH][LENGTH],int ); ->人类玩家输入落子位置并落子  
-（6）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
-（7）evaluate_score.c:包含五个函数：  
+（3）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
+（4）evaluate_score.c:包含五个函数：  
 <img width="1578" height="238" alt="image" src="https://github.com/user-attachments/assets/6c1914bc-3ccf-47f7-8246-4b5043d75b07" />
-（8）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
+（5）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
 int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
 int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
 SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
@@ -45,16 +41,12 @@ SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用
 minimax算法是在每一层轮流选取对于下棋方而言的最优解，经过DFS全局遍历搜索深度后，得出在搜索深度内的最优解（默认与对方极限博弈），而alpha_beta剪枝则是在minimax的基础上增加了一个剪枝的效果，使得在一些注定无效的情况时停止DFS，转向搜索其他，从而加速搜索。剪枝的逻辑是：假设当前层为AI层，在这一层AI落子会尽可能使得落子后全局评估分数较低（有利于AI），而在下一层（human层），聪明的人类玩家会让人类落子后全局评估分数尽可能高（有利于人类）。在human层遍历时，每经过一次搜索，最终会采取的情况的全局评估分数是单调不减的，而对于AI层，每经过一次搜索，最终会采取的情况的全局评估分数是单调不增的，因此，当human层的搜索分数开始大于AI层预设的搜索分数时，就可以采取剪枝，停止该结点的搜索，因为继续搜索下去，分数只会增加，而无论是否再增加，上一AI层都不会采取这一结点情况，因此可以避免无效的搜索，提高了搜索效率。  
 # 测试&运行结果截图  
 玩法介绍界面：
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/72234bab-9435-461a-bc27-dd9afd7227e6" />
-按'b'确认后：  
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/373a4bdd-2378-4889-b744-18b8a9a836cb" />
-执黑落子后：  
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/5a7dd04c-5283-41d4-a029-db3841e80c5e" />
-人类玩家胜利：
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/1d47c004-c95c-4b65-a1d5-ac96dfe710df" />
-人类玩家失败： 
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/30051f42-419f-4b2c-bd5c-4ea9f2eaba14" />
-落子犯规: 
-<img width="1734" height="927" alt="image" src="https://github.com/user-attachments/assets/af35de43-df2e-4f3b-890f-c6827bcb58b0" />
-让两个AI对弈的结果：  
-<img width="2398" height="951" alt="image" src="https://github.com/user-attachments/assets/741fe5b4-3c88-4b86-83c7-c921efdb604a" />
+<img width="1414" height="1572" alt="image" src="https://github.com/user-attachments/assets/1c06e8ca-c105-4f0d-a507-d12f760dca32" />  
+该界面产生的同时开始播放bgm  
+按鼠标右键进入下一环节。  
+执黑时：  
+<img width="1414" height="1572" alt="image" src="https://github.com/user-attachments/assets/e0ff6885-15fe-44ad-9916-97287f7d0124" />
+执白时：  
+<img width="1414" height="1572" alt="image" src="https://github.com/user-attachments/assets/5e09695b-93c0-4647-910f-35171e1d120b" />  
+按鼠标右键进入下一环节。  
+
