@@ -17,7 +17,9 @@ IDE:VS2026
 1.数据结构设计：  
 棋盘空间&棋盘空间状态枚举  
 <img width="322" height="193" alt="image" src="https://github.com/user-attachments/assets/bae09207-6f9c-4c83-b6d9-c066610f4806" />
-使用一个二维数组SPACE chessboard[LENGTH][LENGTH]作为棋盘，其中LENGTH为棋盘长度15；x,y分别为line和column；belong有三种状态：typedef enum { BLACK, WHITE, BLANK }STATUS;  
+使用一个二维数组SPACE chessboard[LENGTH][LENGTH]作为棋盘，其中LENGTH为棋盘长度15；x,y分别为line和column；belong有三种状态：
+<img width="369" height="161" alt="image" src="https://github.com/user-attachments/assets/5f744dc9-3dc4-4137-a375-c83ec7a7fb9d" />  
+（全部大写会与raylib.h中的BLACK,WHITE,BLANK冲突，故改为首字母大写）
 棋形结构  
 <img width="774" height="359" alt="image" src="https://github.com/user-attachments/assets/8f3b06c6-ee86-412e-8110-5edbe3237839" />
 棋形由连续子数码Num和是否“活”两部分组成，该结构以此命名。  
