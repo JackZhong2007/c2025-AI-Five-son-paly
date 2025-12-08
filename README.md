@@ -45,7 +45,7 @@ SPACE AI_player_optimized ->调用minimax，若未找到合适位置则优先在
 minimax算法是在每一层轮流选取对于下棋方而言的最优解，经过DFS全局遍历搜索深度后，得出在搜索深度内的最优解（默认与对方极限博弈），而alpha_beta剪枝则是在minimax的基础上增加了一个剪枝的效果，使得在一些注定无效的情况时停止DFS，转向搜索其他，从而加速搜索。剪枝的逻辑是：假设当前层为AI层，在这一层AI落子会尽可能使得落子后全局评估分数较低（有利于AI），而在下一层（human层），聪明的人类玩家会让人类落子后全局评估分数尽可能高（有利于人类）。在human层遍历时，每经过一次搜索，最终会采取的情况的全局评估分数是单调不减的，而对于AI层，每经过一次搜索，最终会采取的情况的全局评估分数是单调不增的，因此，当human层的搜索分数开始大于AI层预设的搜索分数时，就可以采取剪枝，停止该结点的搜索，因为继续搜索下去，分数只会增加，而无论是否再增加，上一AI层都不会采取这一结点情况，因此可以避免无效的搜索，提高了搜索效率。 
 
 同时，alpha-beta剪枝和minimax&DFS的实现离不开估值函数，由于估值函数较长，在此展示部分代码及估值函数思路:  
-<img width="454" height="816" alt="image" src="https://github.com/user-attachments/assets/4f89c865-76cc-4d48-b4fc-efdabd648188" />
+<img width="454" height="816" alt="image" src="https://github.com/user-attachments/assets/4f89c865-76cc-4d48-b4fc-efdabd648188" />  
 对于一个点的分数，需要评估其四个方向（横竖撇捺）的棋形，不同棋形对应着不同的分值：  
 <img width="351" height="810" alt="image" src="https://github.com/user-attachments/assets/df4120dd-609a-4060-8ffd-e88f1979d99a" />  
 该系列分值是在反复测试后得出的较为合理的值，虽然肯定不是最合适的值，但已经可以使得AI落子逻辑自洽  
