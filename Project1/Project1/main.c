@@ -2,7 +2,7 @@
 #include"victory_condition.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_27:raylib实现后的重构
+	//TEST_27.1:raylib实现后的重构——三个rule界面纹路位置调整
 	srand((unsigned int)time(NULL));
 	InitAudioDevice();
 	Image boardImage = LoadImage("./source/OIP.jpg");
@@ -16,6 +16,7 @@ int main() {
 	Texture BlackImage = LoadTextureFromImage(blackImage);
 	Texture WhiteImage = LoadTextureFromImage(whiteImage);
 	Vector2 boardPosition = { 0.0f, 0.0f };
+	Vector2 rulePosition = { 0.0f, 50.0f };
 	Music bgm = LoadMusicStream("./source/music.mp3");
 	Sound sound = LoadSound("./source/sound2.wav");
 	SetMusicVolume(bgm, 0.5f);
@@ -66,13 +67,13 @@ int main() {
 		BeginDrawing();
 		switch (current_state) {
 		case RULE_UI:
-			DrawTextureEx(RuleImage, boardPosition, 0.0f, 1.0f, WHITE);
+			DrawTextureEx(RuleImage, rulePosition, 0.0f, 1.0f, WHITE);
 			break;
 		case BLACK_UI:
-			DrawTextureEx(BlackImage, boardPosition, 0.0f, 1.0f, WHITE);
+			DrawTextureEx(BlackImage, rulePosition, 0.0f, 1.0f, WHITE);
 			break;
 		case WHITE_UI:
-			DrawTextureEx(WhiteImage, boardPosition, 0.0f, 1.0f, WHITE);
+			DrawTextureEx(WhiteImage, rulePosition, 0.0f, 1.0f, WHITE);
 			break;
 		case GAMETIME:
 			DrawTextureEx(BoardImage, boardPosition, 0.0f, 5.0f, WHITE);
