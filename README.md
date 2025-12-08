@@ -21,7 +21,7 @@ IDE:VS2026
 <img width="369" height="161" alt="image" src="https://github.com/user-attachments/assets/5f744dc9-3dc4-4137-a375-c83ec7a7fb9d" />  
 （全部大写会与raylib.h中的BLACK,WHITE,BLANK冲突，故改为首字母大写）
 棋形结构  
-<img width="774" height="359" alt="image" src="https://github.com/user-attachments/assets/8f3b06c6-ee86-412e-8110-5edbe3237839" />
+<img width="774" height="359" alt="image" src="https://github.com/user-attachments/assets/8f3b06c6-ee86-412e-8110-5edbe3237839" />  
 棋形由连续子数码Num和是否“活”两部分组成，该结构以此命名。  
 我将棋形分为了“活”，“死”，“眠”，“冲”这四个部分，其中“冲”比较特殊，又细分为了“活冲”，“死冲”，“眠冲”，而Num就是简单的一到五这五个情况。  
 不同棋形有着不同的分值，而NUM_LIVE的成员作用为：num代表主体连续数，bool live[2]的两个量分别代指两端是否为“活”（是否被对方堵住或者被棋盘大小限制），bool chong_1[3]和bool   chong_2[3]分别判断在主体两端由于空白空间而中止计数时，两端是否由于“冲”棋形而产生只有中间断了一个的“连续”棋形，其中[3]是为计数，bool chong_live[2]是为判断越过空白后的子是否为“活”  
