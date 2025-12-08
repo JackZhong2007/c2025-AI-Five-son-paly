@@ -2,7 +2,7 @@
 #include"victory_condition.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_26:改用raylib库实现图形界面
+	//TEST_27:raylib实现后的重构
 	srand((unsigned int)time(NULL));
 	InitAudioDevice();
 	Image boardImage = LoadImage("./source/OIP.jpg");
@@ -36,7 +36,6 @@ int main() {
 	}
 	int AI_color = (color == White) ? Black : White;
 	Color col= (color == White) ? WHITE : BLACK;
-	Color AI_col = (AI_color == White) ? WHITE : BLACK;
 	int current_state = RULE_UI;
 	int column=0, line=0;
 	int x=0, y=0;
@@ -112,7 +111,7 @@ int main() {
 			}
 			break;
 		case WIN_UI:
-			DrawText("You win!Congratulations!", 10, 10, 130, BLACK);
+			DrawText("You win!Congratulations!", 10, 10, 115, BLACK);
 			break;
 		case LOSE_UI:
 			DrawText("You lose!What a pity!", 10, 10, 130, BLACK);
