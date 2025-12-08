@@ -16,7 +16,7 @@ IDE:VS2026
 # 模块详细设计：
 1.数据结构设计：  
 棋盘空间&棋盘空间状态枚举  
-<img width="322" height="193" alt="image" src="https://github.com/user-attachments/assets/bae09207-6f9c-4c83-b6d9-c066610f4806" />
+<img width="322" height="193" alt="image" src="https://github.com/user-attachments/assets/bae09207-6f9c-4c83-b6d9-c066610f4806" />  
 使用一个二维数组SPACE chessboard[LENGTH][LENGTH]作为棋盘，其中LENGTH为棋盘长度15；x,y分别为line和column；belong有三种状态：
 <img width="369" height="161" alt="image" src="https://github.com/user-attachments/assets/5f744dc9-3dc4-4137-a375-c83ec7a7fb9d" />  
 （全部大写会与raylib.h中的BLACK,WHITE,BLANK冲突，故改为首字母大写）
