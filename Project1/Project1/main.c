@@ -2,7 +2,7 @@
 #include"victory_condition.h"
 #include"AI_player_DFS_alpha_beta.h"
 int main() {
-	//TEST_27.1:raylib实现后的重构——三个rule界面纹路位置调整
+	//TEST_27.2:raylib实现后的重构——两个界面界面纹路位置调整
 	srand((unsigned int)time(NULL));
 	InitAudioDevice();
 	Image boardImage = LoadImage("./source/OIP.jpg");
@@ -112,10 +112,10 @@ int main() {
 			}
 			break;
 		case WIN_UI:
-			DrawText("You win!Congratulations!", 10, 10, 115, BLACK);
+			DrawText("You win!Congratulations!", rulePosition.x, rulePosition.y, 115, BLACK);
 			break;
 		case LOSE_UI:
-			DrawText("You lose!What a pity!", 10, 10, 130, BLACK);
+			DrawText("You lose!What a pity!", rulePosition.x, rulePosition.y, 130, BLACK);
 			break;
 		}
 		EndDrawing();
