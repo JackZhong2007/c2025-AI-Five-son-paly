@@ -29,10 +29,12 @@ IDE:VS2026
 （3）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
 （4）evaluate_score.c:包含五个函数：  
 <img width="1578" height="238" alt="image" src="https://github.com/user-attachments/assets/6c1914bc-3ccf-47f7-8246-4b5043d75b07" />
-（5）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
-int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
-int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
-SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
+（5）AI_player_DFS_alpha_beta.c:包含四个函数： 
+<img width="2127" height="328" alt="image" src="https://github.com/user-attachments/assets/f452a44f-d848-4eab-b2eb-6e27e5fc8e21" />  
+int has_neighbor ->判读某位置周围两格的范围内是否有落子  
+int minimax ->alpha-beta剪枝处理DFS极小化极大算法  
+int situation_assessment ->统计当前总得分（AI方总分-人类方总分）  
+SPACE AI_player_optimized ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
 # 核心算法实现&代码展示&算法原理简述
 该项目最为核心的算法是alpha-beta剪枝和minimax&DFS算法  
 搜索的深度通过宏定义#define SEARCH_DEPTH 4 设置为4，这在保证了程序运行速度的用时又确保了AI算力的足够强大  
