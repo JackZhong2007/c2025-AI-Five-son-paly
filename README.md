@@ -26,14 +26,10 @@ IDE:VS2026
 2.功能模块设计  
 （1）main.c:游戏开始前置准备，主循环——一方落子->判定是否获胜->另一方落子->判断是否或者  
 （2）head_title_library.h:包含一系列头文件，宏定义，类定义，方便调用  
-（3）before_begin.c：包含三个函数：  
-<img width="1172" height="134" alt="image" src="https://github.com/user-attachments/assets/aa463e3e-4cd1-44f7-92c5-8aa2e176e02d" />
-（4）print_chessboard.c:包含一个函数： void print_chessboard(SPACE chessboard[15][15]); ->打印棋盘的当前落子情况  
-（5）human_player_play.c:包含一个函数： void human_player_play(int ,int ,SPACE space[LENGTH][LENGTH],int ); ->人类玩家输入落子位置并落子  
-（6）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
-（7）evaluate_score.c:包含五个函数：  
+（3）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
+（4）evaluate_score.c:包含五个函数：  
 <img width="1578" height="238" alt="image" src="https://github.com/user-attachments/assets/6c1914bc-3ccf-47f7-8246-4b5043d75b07" />
-（8）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
+（5）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
 int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
 int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
 SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
