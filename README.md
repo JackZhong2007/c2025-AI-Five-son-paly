@@ -16,10 +16,12 @@ IDE:VS2026
 # 模块详细设计：
 1.数据结构设计：  
 棋盘空间&棋盘空间状态枚举  
-<img width="322" height="193" alt="image" src="https://github.com/user-attachments/assets/bae09207-6f9c-4c83-b6d9-c066610f4806" />
-使用一个二维数组SPACE chessboard[LENGTH][LENGTH]作为棋盘，其中LENGTH为棋盘长度15；x,y分别为line和column；belong有三种状态：typedef enum { BLACK, WHITE, BLANK }STATUS;  
+<img width="322" height="193" alt="image" src="https://github.com/user-attachments/assets/bae09207-6f9c-4c83-b6d9-c066610f4806" />  
+使用一个二维数组SPACE chessboard[LENGTH][LENGTH]作为棋盘，其中LENGTH为棋盘长度15；x,y分别为line和column；belong有三种状态：  
+<img width="369" height="161" alt="image" src="https://github.com/user-attachments/assets/5f744dc9-3dc4-4137-a375-c83ec7a7fb9d" />  
+（全部大写会与raylib.h中的BLACK,WHITE,BLANK冲突，故改为首字母大写）
 棋形结构  
-<img width="774" height="359" alt="image" src="https://github.com/user-attachments/assets/8f3b06c6-ee86-412e-8110-5edbe3237839" />
+<img width="774" height="359" alt="image" src="https://github.com/user-attachments/assets/8f3b06c6-ee86-412e-8110-5edbe3237839" />  
 棋形由连续子数码Num和是否“活”两部分组成，该结构以此命名。  
 我将棋形分为了“活”，“死”，“眠”，“冲”这四个部分，其中“冲”比较特殊，又细分为了“活冲”，“死冲”，“眠冲”，而Num就是简单的一到五这五个情况。  
 不同棋形有着不同的分值，而NUM_LIVE的成员作用为：num代表主体连续数，bool live[2]的两个量分别代指两端是否为“活”（是否被对方堵住或者被棋盘大小限制），bool chong_1[3]和bool   chong_2[3]分别判断在主体两端由于空白空间而中止计数时，两端是否由于“冲”棋形而产生只有中间断了一个的“连续”棋形，其中[3]是为计数，bool chong_live[2]是为判断越过空白后的子是否为“活”  
@@ -29,17 +31,27 @@ IDE:VS2026
 （3）viction_condition.c:包含一个函数： int victory_condition(SPACE space[LENGTH][LENGTH]); ->判断当前棋局是否有五连子  
 （4）evaluate_score.c:包含五个函数：  
 <img width="1578" height="238" alt="image" src="https://github.com/user-attachments/assets/6c1914bc-3ccf-47f7-8246-4b5043d75b07" />
-（5）AI_player_DFS_alpha_beta.c:包含四个函数： int has_neighbor(SPACE chessboard[LENGTH][LENGTH], int x, int y, int distance);int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->判读某位置周围两格的范围内是否有落子  
-int minimax(SPACE chessboard[LENGTH][LENGTH], int depth, int alpha, int beta, int maximizingPlayer, int color); ->alpha-beta剪枝处理DFS极小化极大算法  
-int situation_assessment(SPACE chessboard[LENGTH][LENGTH], int color); ->统计当前总得分（AI方总分-人类方总分）  
-SPACE AI_player_optimized(SPACE chessboard[LENGTH][LENGTH], int color); ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
+（5）AI_player_DFS_alpha_beta.c:包含四个函数： 
+<img width="2127" height="328" alt="image" src="https://github.com/user-attachments/assets/f452a44f-d848-4eab-b2eb-6e27e5fc8e21" />  
+int has_neighbor ->判读某位置周围两格的范围内是否有落子  
+int minimax ->alpha-beta剪枝处理DFS极小化极大算法  
+int situation_assessment ->统计当前总得分（AI方总分-人类方总分）  
+SPACE AI_player_optimized ->调用minimax，若未找到合适位置则优先在棋盘中心区间随机落子  
 # 核心算法实现&代码展示&算法原理简述
 该项目最为核心的算法是alpha-beta剪枝和minimax&DFS算法  
 搜索的深度通过宏定义#define SEARCH_DEPTH 4 设置为4，这在保证了程序运行速度的用时又确保了AI算力的足够强大  
 以下为AI_player_DFS_alpha_beta函数原码  
 <img width="1346" height="1178" alt="image" src="https://github.com/user-attachments/assets/308073f1-d3ef-4c49-bfaa-b2c69b0c7647" />  
-minimax算法是在每一层轮流选取对于下棋方而言的最优解，经过DFS全局遍历搜索深度后，得出在搜索深度内的最优解（默认与对方极限博弈），而alpha_beta剪枝则是在minimax的基础上增加了一个剪枝的效果，使得在一些注定无效的情况时停止DFS，转向搜索其他，从而加速搜索。剪枝的逻辑是：假设当前层为AI层，在这一层AI落子会尽可能使得落子后全局评估分数较低（有利于AI），而在下一层（human层），聪明的人类玩家会让人类落子后全局评估分数尽可能高（有利于人类）。在human层遍历时，每经过一次搜索，最终会采取的情况的全局评估分数是单调不减的，而对于AI层，每经过一次搜索，最终会采取的情况的全局评估分数是单调不增的，因此，当human层的搜索分数开始大于AI层预设的搜索分数时，就可以采取剪枝，停止该结点的搜索，因为继续搜索下去，分数只会增加，而无论是否再增加，上一AI层都不会采取这一结点情况，因此可以避免无效的搜索，提高了搜索效率。  
+minimax算法是在每一层轮流选取对于下棋方而言的最优解，经过DFS全局遍历搜索深度后，得出在搜索深度内的最优解（默认与对方极限博弈），而alpha_beta剪枝则是在minimax的基础上增加了一个剪枝的效果，使得在一些注定无效的情况时停止DFS，转向搜索其他，从而加速搜索。剪枝的逻辑是：假设当前层为AI层，在这一层AI落子会尽可能使得落子后全局评估分数较低（有利于AI），而在下一层（human层），聪明的人类玩家会让人类落子后全局评估分数尽可能高（有利于人类）。在human层遍历时，每经过一次搜索，最终会采取的情况的全局评估分数是单调不减的，而对于AI层，每经过一次搜索，最终会采取的情况的全局评估分数是单调不增的，因此，当human层的搜索分数开始大于AI层预设的搜索分数时，就可以采取剪枝，停止该结点的搜索，因为继续搜索下去，分数只会增加，而无论是否再增加，上一AI层都不会采取这一结点情况，因此可以避免无效的搜索，提高了搜索效率。 
+
+同时，alpha-beta剪枝和minimax&DFS的实现离不开估值函数，由于估值函数较长，在此展示部分代码及估值函数思路:  
+<img width="454" height="816" alt="image" src="https://github.com/user-attachments/assets/4f89c865-76cc-4d48-b4fc-efdabd648188" />  
+对于一个点的分数，需要评估其四个方向（横竖撇捺）的棋形，不同棋形对应着不同的分值：  
+<img width="351" height="810" alt="image" src="https://github.com/user-attachments/assets/df4120dd-609a-4060-8ffd-e88f1979d99a" />  
+该系列分值是在反复测试后得出的较为合理的值，虽然肯定不是最合适的值，但已经可以使得AI落子逻辑自洽  
+上上图展示了“横”情况棋形的判断，前文谈及棋形有活死冲之分，活和死是比较好判断的，而冲的具体判断还需要后续再次处理；在图中可以看出，判断活和死就是简单的向一个方向延展（只需延展四个），直到下一个子为空白或者对方的子时记录该方向延展个数，后续再与反方向延展个数相加即可得到活和死的棋形。冲类型的判断是基于当在一个方向延展时遇到了空白，则尝试跳过空白处继续延展（只需延展三个），若与估值点棋颜色相同则计数，否则则停止计数，后续再与反方向延展个数相加即可得到具体的冲的棋形。  
 # 测试&运行结果截图  
+游戏过程中按esc可退出游戏。
 玩法介绍界面：
 <img width="1416" height="1527" alt="image" src="https://github.com/user-attachments/assets/3c2fecb8-511c-4b1b-9a99-89270d60590f" />  
 该界面产生的同时开始播放bgm  
@@ -49,4 +61,10 @@ minimax算法是在每一层轮流选取对于下棋方而言的最优解，经�
 执白时：  
 <img width="1413" height="1527" alt="image" src="https://github.com/user-attachments/assets/9b532ac2-7d76-4416-af06-19b9cf7d439f" />   
 按鼠标右键进入下一环节。  
+<img width="1409" height="1527" alt="image" src="https://github.com/user-attachments/assets/d1ee570b-add6-4876-8689-7d18fc983b67" />  
+鼠标移到想要落子的位置后，按鼠标左键进行预落子，按鼠标右键进行落子，落子成功后会有音效提示，AI思考落子期间bgm会停止。  
+败北结算画面：  
+<img width="1409" height="1529" alt="image" src="https://github.com/user-attachments/assets/c4a93ba9-7dc3-4ec3-8a8f-582f5f896c9b" />
+胜利结算画面：  
+<img width="1414" height="1532" alt="image" src="https://github.com/user-attachments/assets/862b1904-540d-43b1-aca8-fadd236ff0c1" />  
 
