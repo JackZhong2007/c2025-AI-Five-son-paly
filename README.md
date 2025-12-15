@@ -61,8 +61,8 @@ minimax算法是在每一层轮流选取对于下棋方而言的最优解，经�
 执白时：  
 <img width="1413" height="1527" alt="image" src="https://github.com/user-attachments/assets/9b532ac2-7d76-4416-af06-19b9cf7d439f" />   
 按鼠标右键进入下一环节。  
-<img width="1409" height="1527" alt="image" src="https://github.com/user-attachments/assets/d1ee570b-add6-4876-8689-7d18fc983b67" />  
-鼠标移到想要落子的位置后，按鼠标左键进行预落子，按鼠标右键进行落子，落子成功后会有音效提示，AI思考落子期间bgm会停止。  
+<img width="1414" height="1528" alt="image" src="https://github.com/user-attachments/assets/ea22d28a-0f67-419a-9a26-5dd8a9593f89" />  
+鼠标移到想要落子的位置后，按鼠标左键进行预落子，按鼠标右键进行落子，落子成功后会有音效提示，AI思考落子期间bgm会停止，红心标记为双方上一手落点位置的提示。  
 败北结算画面：  
 <img width="1409" height="1529" alt="image" src="https://github.com/user-attachments/assets/c4a93ba9-7dc3-4ec3-8a8f-582f5f896c9b" />
 胜利结算画面：  
