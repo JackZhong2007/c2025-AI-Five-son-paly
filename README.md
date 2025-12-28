@@ -1,3 +1,6 @@
+备注：此报告为临时报告，word形式报告已上传至课程设计  
+<img width="700" height="441" alt="image" src="https://github.com/user-attachments/assets/c1e04e39-5107-43e0-92bb-173dc936cd3b" />
+
 # 项目报告  
 学院专业班级：计算机学院大类一班
 项目名称：AI五子棋  
